@@ -1,0 +1,62 @@
+﻿@model IEnumerable<GuitarWeb.Models.Guitar>
+
+@{
+    ViewBag.Title = "GuitarList";
+}
+
+
+<script src="~/Scripts/GuitarScripts.js"></script>
+
+<h2>GuitarList</h2>
+
+<div>
+    <button title="Show list" value="Show Guitarlist" id="btnShowGuitarlist" onclick="javascript:ShowDiv('guitarList');" />
+    <button  value="Hide Guitarlist" id="btnHideGuitarlist" onclick="javascript:HideDiv('guitarList');" />
+</div>
+
+<div id="title">
+    This is my div tag!
+</div>
+
+<div id="guitarList">
+        <p>
+            @Html.ActionLink("Create New", "New")
+        </p>
+        <table>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RegNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Model)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductionYear)
+                </th>
+                <th></th>
+            </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductionYear)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.RegNumber}) 
+                    <button value="Show details" id="ButtonA" onclick="javascript:DeleteGuitar(@item.RegNumber);" />
+                    <button value="Show details" id="ButtonB" onclick="javascript:GetGuitar(@item.RegNumber);" />
+                    <button value="Hide div" id="ButtonC" onclick="javascript:HideDiv('title');" />
+                    <button value="Show div" id="ButtonD" onclick="javascript:ShowDiv('title');" />
+          
+                </td>
+            </tr>
+        }
+    
+        </table>
+</div>
